@@ -6,14 +6,22 @@
   <title>FreeCryptoZone 免費加密幣任務情報站</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+  <!-- Replace canvas with real price + heatmap -->
+  <div class="chart-container">
+    <!-- Live crypto prices -->
+    <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,solana,cardano" currency="usd" background-color="#161b22" locale="en"></coingecko-coin-price-marquee-widget>
+
+    <!-- Blockchain heatmap -->
+    <!-- <iframe src="https://www.coin360.com/" title="Blockchain Activity Heatmap"></iframe> -->
+  </div>
 </head>
 <body>
   <header>
-    <img src="assets/logo.png" alt="FreeCryptoZone Logo" class="logo">
+    <!-- <img src="assets/logo.png" alt="FreeCryptoZone Logo" class="logo"> -->
     <h1>🚀 FreeCryptoZone</h1>
     <p>不花一分錢也能開始累積加密幣！</p>
   </header>
-
 
   <main>
     <section class="hero">
@@ -21,7 +29,7 @@
       <p>以下是我們實測過的高評價平台，新手也能立即開始！</p>
       <div class="cards">
         <div class="card">
-          <h3><a href="https://www.freecash.com/r/177465711173" target="_blank">Freecash</a></h3>
+          <h3><a href="https://www.freecash.com/" target="_blank">Freecash</a></h3>
           <p>全球最大賺幣任務平台，完成任務領取 BTC、ETH、USDT。</p>
         </div>
         <div class="card">
@@ -38,15 +46,12 @@
     <section class="task-wall">
       <h2>📋 即刻開始任務牆</h2>
       <p>完成下方任務，賺取你的第一筆加密幣收入：</p>
-      <!-- <iframe src="https://your-cpa-wall-link.placeholder" width="100%" height="600" frameborder="0"></iframe> -->
       <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
         <iframe data-aa='2405741' src='//acceptable.a-ads.com/2405741/?size=Adaptive'
                           style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
       </div>
     </section>
 
-
-    
 
     <section class="faq">
       <h2>❓ 常見問題</h2>
