@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover top crypto airdrop sites to earn free USDC and Bitcoin. Complete simple tasks, games, and surveys — no investment needed. Start earning crypto free money instantly!">
+  <meta name="keywords" content="free crypto, crypto airdrops, earn Bitcoin, free USDC, make money online, crypto rewards, CPA crypto offers, no investment crypto, play to earn, survey to earn crypto, free money">
+
+
   <title>FreeCryptoZone 免費加密幣任務情報站</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -10,17 +14,24 @@
   <!-- Replace canvas with real price + heatmap -->
   <div class="chart-container">
     <!-- Live crypto prices -->
-    <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,solana,cardano" currency="usd" background-color="#161b22" locale="en"></coingecko-coin-price-marquee-widget>
-
-    <!-- Blockchain heatmap -->
-    <!-- <iframe src="https://www.coin360.com/" title="Blockchain Activity Heatmap"></iframe> -->
+    <!-- <coingecko-coin-price-marquee-widget  coin-ids="bitcoin,ethereum,solana,cardano" currency="usd" background-color="#161b22" locale="en"></coingecko-coin-price-marquee-widget> -->
+    <coingecko-coin-price-marquee-widget 
+      coin-ids="bitcoin,ethereum,solana,cardano" 
+      currency="usd" 
+      background-color="#161b22" 
+      locale="en">
+    </coingecko-coin-price-marquee-widget>
   </div>
 </head>
 <body>
+  <div class="heatmap-bg">
+    <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
+    <gecko-coin-heatmap-widget locale="en" transparent-background="true" top="100"></gecko-coin-heatmap-widget>
+  </div>
+
   <header>
-    <!-- <img src="assets/logo.png" alt="FreeCryptoZone Logo" class="logo"> -->
-    <h1>🚀 FreeCryptoZone</h1>
-    <p>不花一分錢也能開始累積加密幣！</p>
+    <h1 class="frosted-text h1">🚀 FreeCryptoZone</h1>
+    <p class="frosted-text p">不花一分錢也能開始累積加密幣！</p>
   </header>
 
   <main>
@@ -61,6 +72,8 @@
     </section>
 
 
+
+
     <section class="faq">
       <h2>❓ 常見問題</h2>
       <ul>
@@ -80,11 +93,15 @@
         <p><strong>SOL 錢包：</strong> <span class="wallet" onclick="copyToClipboard('sol-wallet')"> <code id="sol-wallet">3RTuRbgKhzcY9JkDd4Rk2b6BpcRtmY4mfdn1ytB5ss2T</code> <button>📋 複製</button></span></p>
         <p><strong>ETH 錢包：</strong> <span class="wallet" onclick="copyToClipboard('eth-wallet')"> <code id="eth-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 複製</button></span></p>
         <p><strong>BASE 錢包：</strong> <span class="wallet" onclick="copyToClipboard('base-wallet')"> <code id="base-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 複製</button></span></p>
-        
       </div>
     </section>
     
 
+        <!-- Blockchain heatmap --> 
+        <div class="chart-container">
+          <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
+          <gecko-coin-heatmap-widget locale="en" transparent-background="true" top="100"></gecko-coin-heatmap-widget>
+        </div>
 
   </main>
 

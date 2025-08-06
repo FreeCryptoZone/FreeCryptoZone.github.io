@@ -7,23 +7,87 @@ body {
   line-height: 1.6;
 }
 
+
 header {
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-  color: #ffffff;
-  padding: 70px 20px 40px 20px;
-  text-align: center;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  text-align: center;
+  padding: 80px 20px 40px 20px;
+  background: none;
+  box-shadow: none;
 }
 
-.chart-container {
-  width: 90%;
-  max-width: 900px;
-  margin: 0 auto 20px auto;
-  background-color: rgba(255, 255, 255, 0.05);
-  padding: 10px;
-  border-radius: 8px;
+.frosted-text {
+  font-size: 1.8rem;
+  margin: 12px auto;
+  text-align: center;
+  max-width: 90%;
 }
+
+.frosted-text.h1 {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+.frosted-text.p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.chart-container iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.heatmap-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none; /* 防止干擾點擊 */
+  opacity: 0.15; /* 淡化效果，看起來像背景 */
+}
+
+.header-content {
+  background: rgba(100, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* .header-content {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(to bottom, rgba(22, 27, 34, 0.85), rgba(22, 27, 34, 0.95));
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid #333;
+} */
+
 
 canvas {
   background-color: transparent;
