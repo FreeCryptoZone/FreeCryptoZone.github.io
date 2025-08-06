@@ -25,31 +25,39 @@
 
   <main>
     <section class="hero">
-      <h2>🎯 精選免費任務平台</h2>
-      <p>以下是我們實測過的高評價平台，新手也能立即開始！</p>
+      <h2>⚡ 本週最火免費賺幣平台</h2>
+      <p>我們精選了目前社群最活躍、回報率最高的免費平台，所有人都能無門檻參與！</p>
       <div class="cards">
         <div class="card">
-          <h3><a href="https://www.freecash.com/" target="_blank">Freecash</a></h3>
-          <p>全球最大賺幣任務平台，完成任務領取 BTC、ETH、USDT。</p>
+          <h3><a href="https://freecash.com/r/M2I8S" target="_blank">Freecash</a></h3>
+          <p>全球最大賺幣任務平台，完成任務領取 BTC、ETH、USDT。真實用戶好評超過 100 萬筆！</p>
+        </div>
+        <div class="card">
+          <h3><a href="https://r.honeygain.me/AWERT0513B" target="_blank">Honeygain</a></h3>
+          <p>分享網路流量就能獲利，穩定躺賺，每月最高達 $20 美元。</p>
+          
         </div>
         <div class="card">
           <h3><a href="https://www.cryptotasky.com/" target="_blank">CryptoTasky</a></h3>
-          <p>台灣用戶友善，每天都有簡單空投和社群任務。</p>
-        </div>
-        <div class="card">
-          <h3><a href="https://honeygain.com/" target="_blank">Honeygain</a></h3>
-          <p>分享網路就能躺賺，每月最高可達 20 美元。</p>
+          <p>每日更新空投與社群任務，參與就能獲得多種代幣獎勵。</p>
         </div>
       </div>
     </section>
 
     <section class="task-wall">
-      <h2>📋 即刻開始任務牆</h2>
+      <h2>📋 即刻開賺｜任務牆</h2>
       <p>完成下方任務，賺取你的第一筆加密幣收入：</p>
       <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
         <iframe data-aa='2405741' src='//acceptable.a-ads.com/2405741/?size=Adaptive'
                           style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
       </div>
+      <p>全自動廣告點擊任務，讓你的瀏覽時間變成收入：</p>
+      <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
+        <iframe data-aa='2405825' src='//acceptable.a-ads.com/2405825/?size=Adaptive'
+                          style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+      </div>
+
+
     </section>
 
 
@@ -61,10 +69,51 @@
         <li><strong>Q: 可以用手機操作嗎？</strong><br>A: 可以，大部分任務平台支援行動裝置。</li>
       </ul>
     </section>
+
+
+    <section class="dashboard-section">
+      <h2>🙏 支持我們：捐贈加密貨幣</h2>
+      <p>如果你喜歡我們提供的免費資源與工具，歡迎用加密貨幣打賞支持我們繼續營運。你的一點點心意，將成為我們繼續改版與更新的動力！</p>
+    
+      <div class="wallet-section">
+        <p><strong>BTC 錢包：</strong> <span class="wallet" onclick="copyToClipboard('btc-wallet')"> <code id="btc-wallet">bc1qru0hmckv287qc640me3e3hduhvcj5ehshk4y3y</code> <button>📋 複製</button></span></p>
+        <p><strong>SOL 錢包：</strong> <span class="wallet" onclick="copyToClipboard('sol-wallet')"> <code id="sol-wallet">3RTuRbgKhzcY9JkDd4Rk2b6BpcRtmY4mfdn1ytB5ss2T</code> <button>📋 複製</button></span></p>
+        <p><strong>ETH 錢包：</strong> <span class="wallet" onclick="copyToClipboard('eth-wallet')"> <code id="eth-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 複製</button></span></p>
+        <p><strong>BASE 錢包：</strong> <span class="wallet" onclick="copyToClipboard('base-wallet')"> <code id="base-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 複製</button></span></p>
+        
+      </div>
+    </section>
+    
+
+
   </main>
 
   <footer>
-    <p>© 2025 FreeCryptoZone | 建議使用 Brave 瀏覽器賺取額外獎勵</p>
+    &copy; 2025 FreeCryptoZone. All rights reserved.
   </footer>
+
+
+  <div id="toast" class="toast"></div>
+  <script>
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(`✅ Copied：${text}`);
+    });
+  }
+  
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
+  </script>
+  
+    
+
+
 </body>
 </html>

@@ -117,6 +117,50 @@ iframe {
   filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));
 }
 
+.wallet-section code {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #58a6ff;
+}
+
+.wallet-section button {
+  margin-left: 10px;
+  padding: 4px 8px;
+  background-color: #21262d;
+  color: #58a6ff;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+.wallet-section button:hover {
+  background-color: #2a2f37;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #1f2937;
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  font-size: 0.95em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 9999;
+}
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 @media screen and (max-width: 768px) {
   .cards {
     flex-direction: column;
