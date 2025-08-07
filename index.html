@@ -30,34 +30,107 @@
   </div>
 
   <header>
-    <h1 class="frosted-text h1">🚀 FreeCryptoZone</h1>
-    <p class="frosted-text p">不花一分錢也能開始累積加密幣！</p>
+    <h1 class="frosted-text h1"><img src="assets/logo.png" alt="Logo Icon" class="icon" />FreeCryptoZone</h1>
+
+    <div id="messageContainer">
+      <div class="message-text" id="messageText">載入中...</div>
+    </div>
+  
+    <script>
+      const messages = [
+        "你以為賺錢一定要投資？其實還有免費的方法",
+        "每天只要 5 分鐘，完成問卷或遊戲就能領現金小獎勵",
+        "0 風險、0 投資，點幾下任務就能領 USDC / BTC！",
+        "用手機做些小任務，也能慢慢累積零用錢",
+        "這些平台我們親自試過，完全免費、無風險",
+        "全球超過 100 萬人都在做的賺錢方式，你也可以",
+      ];
+  
+      let index = 0;
+      let isPaused = false;
+      const textEl = document.getElementById("messageText");
+      const container = document.getElementById("messageContainer");
+  
+      function updateMessage() {
+        if (isPaused) return;
+        textEl.classList.remove("slide-in");
+        textEl.classList.add("slide-out");
+  
+        setTimeout(() => {
+          textEl.textContent = messages[index];
+          textEl.classList.remove("slide-out");
+          textEl.classList.add("slide-in");
+          index = (index + 1) % messages.length;
+        }, 100); // 與 CSS 動畫時間同步
+      }
+  
+      let interval = setInterval(updateMessage, 2000);
+      updateMessage();
+  
+      container.addEventListener("mouseenter", () => {
+        isPaused = true;
+      });
+  
+      container.addEventListener("mouseleave", () => {
+        isPaused = false;
+      });
+    </script>
+
+
+
+
   </header>
 
   <main>
     <section class="hero">
-      <h2>⚡ 本週最火免費賺幣平台</h2>
-      <p>我們精選了目前社群最活躍、回報率最高的免費平台，所有人都能無門檻參與！</p>
+      <h2>⚡ 本週最火免費賺錢平台</h2>
+      <p>我們精選了目前社群最活躍、回報率穩定的免費平台，所有人都能無門檻參與！</p>
       <div class="cards">
+    
         <div class="card">
           <h3><a href="https://freecash.com/r/M2I8S" target="_blank">Freecash</a></h3>
-          <p>全球最大賺幣任務平台，完成任務領取 BTC、ETH、USDT。真實用戶好評超過 100 萬筆！</p>
+          <p>任務類型最多元（遊戲、問卷、App），點數可換 BTC/USDT。<br><strong>難度：</strong>⭐️⭐️（新手適合）</p>
         </div>
+    
         <div class="card">
           <h3><a href="https://r.honeygain.me/AWERT0513B" target="_blank">Honeygain</a></h3>
-          <p>分享網路流量就能獲利，穩定躺賺，每月最高達 $20 美元。</p>
-          
+          <p>分享網路流量就能獲利，安裝後自動運作，每月可達 $20 美元。<br><strong>難度：</strong>⭐️（超簡單）</p>
         </div>
+    
         <div class="card">
-          <h3><a href="https://www.cryptotasky.com/" target="_blank">CryptoTasky</a></h3>
-          <p>每日更新空投與社群任務，參與就能獲得多種代幣獎勵。</p>
+          <h3><a href="https://www.idle-empire.com?r=zaogw7" target="_blank">Idle-Empire</a></h3>
+          <p>完成問卷、玩遊戲、看影片獲得點數，換現金或加密幣。<br><strong>難度：</strong>⭐️⭐️（需要稍花時間）</p>
         </div>
+    
+        <div class="card">
+          <h3><a href="https://www.swagbucks.com/profile/r_218488875?rp=1" target="_blank">Swagbucks</a></h3>
+          <p>老牌任務牆，看影片、問卷或購物都能賺，支援 PayPal。<br><strong>難度：</strong>⭐️⭐️⭐️（介面稍難但種類多）</p>
+        </div>
+    
+        <!-- <div class="card">
+          <h3><a href="https://timebucks.com/?ref=你的推薦碼" target="_blank">TimeBucks</a></h3>
+          <p>支援 TikTok 任務、照片上傳等多樣賺法，提領管道多元。<br><strong>難度：</strong>⭐️⭐️（操作多樣但簡單）</p>
+        </div> -->
+    
+        <div class="card">
+          <h3><a href="https://pawns.app/?r=15933705" target="_blank">Pawns.app</a></h3>
+          <p>與 Honeygain 類似分享多餘的網路流量，安裝後即被動賺取收益。<br><strong>難度：</strong>⭐️（全自動）</p>
+        </div>
+    
       </div>
     </section>
+
+    <p><strong>難度說明：</strong>⭐️（全自動）｜⭐️⭐️（簡單任務）｜⭐️⭐️⭐️（較多步驟）</p>
+
+    
 
     <section class="task-wall">
       <h2>📋 即刻開賺｜任務牆</h2>
       <p>完成下方任務，賺取你的第一筆加密幣收入：</p>
+      <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
+        <a target="_blank" href="https://faucetcrypto.com/r/9010975"><img src="assets/300_250_minimalist.gif" width="300" height="250"></a>
+      </div>
+      <p>讓手機成為賺錢工具：</p>
       <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
         <iframe data-aa='2405741' src='//acceptable.a-ads.com/2405741/?size=Adaptive'
                           style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
@@ -68,18 +141,35 @@
                           style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
       </div>
 
-
+ 
     </section>
 
 
+    <section class="reviews" onmouseenter="pauseAutoRotate()" onmouseleave="resumeAutoRotate()">
+      <h2>💬 用戶評價</h2>
+      <div class="review-container">
+        <button class="nav-button left" onclick="prevReview()">&#8592;</button>
+    
+        <div class="review-box" id="reviewBox">
+          <div id="stars" class="stars">★★★★★</div>
+          <p id="reviewText">"我通勤時做問卷任務，一週下來也換到約 $5，算是小補貼。"</p>
+          <p id="reviewAuthor">- @jamie_lz132</p>
+        </div>
+    
+        <button class="nav-button right" onclick="nextReview()">&#8594;</button>
+      </div>
+    </section>
+    
+    
+    
 
 
     <section class="faq">
       <h2>❓ 常見問題</h2>
       <ul>
-        <li><strong>Q: 需要加密貨幣錢包嗎？</strong><br>A: 是的，推薦使用 <a href="https://metamask.io" target="_blank">MetaMask</a>。</li>
         <li><strong>Q: 這些平台會騙人嗎？</strong><br>A: 我們只推薦實測過、信譽良好的平台。</li>
         <li><strong>Q: 可以用手機操作嗎？</strong><br>A: 可以，大部分任務平台支援行動裝置。</li>
+        <li><strong>Q: 我不想提供個資可以嗎？</strong><br>A: 可以，多數可以提領禮卡或提至加密錢包例如 <a href="https://metamask.io" target="_blank">MetaMask</a>。</li>
       </ul>
     </section>
 
@@ -123,7 +213,65 @@
   }
   </script>
   
-    
+  <script>
+    const reviews = [
+      { text: "我通勤時做問卷任務，一週下來也換到約 $5，算是小補貼。", author: "@jamie_lz132", stars: 4 },
+      { text: "一開始只是想玩玩看，結果真的轉進了幣安的帳戶。", author: "Em_Design_88", stars: 5 },
+      { text: "介面操作簡單，有些任務比較難但蠻容易理解的。", author: "zoelab5566", stars: 4 },
+      { text: "我不懂加密貨幣，但這種任務賺獎勵的方式感覺很安全。", author: "crazy_dino42", stars: 5 },
+      { text: "Honeygain 的收入是慢但穩定，跑兩個月真的有提領成功。", author: "ben.work_A", stars: 3 },
+      { text: "Freecash 的任務種類滿多，我主要做遊戲類型的任務。", author: "Mia_BTClover", stars: 4 },
+      { text: "有時候任務沒過很正常，但大部分平台都有回報", author: "h00ly_338", stars: 4 },
+      { text: "小白如我也能參與，跟著教學操作就好", author: "_noidea_user_23", stars: 5 },
+      { text: "沒有綁卡、沒有叫你投錢這點很加分", author: "user99123789", stars: 5 }
+    ];
+  
+    let currentIndex = 0;
+    let autoRotateInterval;
+  
+    function renderStars(n) {
+      return "★".repeat(n) + "☆".repeat(5 - n);
+    }
+  
+    function updateReview() {
+      const box = document.getElementById("reviewBox");
+      box.style.opacity = 0;
+      setTimeout(() => {
+        document.getElementById("reviewText").textContent = `"${reviews[currentIndex].text}"`;
+        document.getElementById("reviewAuthor").textContent = `- ${reviews[currentIndex].author}`;
+        document.getElementById("stars").textContent = renderStars(reviews[currentIndex].stars);
+        box.style.opacity = 1;
+      }, 300);
+    }
+  
+    function nextReview() {
+      currentIndex = (currentIndex + 1) % reviews.length;
+      updateReview();
+    }
+  
+    function prevReview() {
+      currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+      updateReview();
+    }
+  
+    function startAutoRotate() {
+      autoRotateInterval = setInterval(nextReview, 4000);
+    }
+  
+    function pauseAutoRotate() {
+      clearInterval(autoRotateInterval);
+    }
+  
+    function resumeAutoRotate() {
+      startAutoRotate();
+    }
+  
+    // 初始啟動
+    startAutoRotate();
+  </script>
+  
+  
+  
 
 
 </body>
