@@ -8,11 +8,63 @@ body {
 }
 
 
+/* .message-box {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 600px;
+  min-height: 60px;
+  transition: opacity 0.5s ease-in-out;
+} */
+
+
+
+#messageContainer {
+  overflow: hidden;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+}
+
+.message-text {
+  font-size: 1.6rem;
+  text-align: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  will-change: transform, opacity;
+}
+
+.slide-out {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.slide-in {
+  transform: translateY(100%);
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+
 header {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 80px 20px 40px 20px;
+  padding: 40px 20px 40px 20px;
   background: none;
   box-shadow: none;
 }
@@ -37,6 +89,14 @@ header {
   text-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
 }
 
+
+.icon {
+  width: 100px;
+  height: 100px;
+  vertical-align: middle;
+  margin-right: 8px;
+  filter: drop-shadow(0 0 4px #00ffff);
+}
 
 .chart-container {
   display: flex;
@@ -223,6 +283,81 @@ iframe {
   opacity: 1;
   pointer-events: auto;
 }
+
+
+
+.reviews {
+  text-align: center;
+  margin: 80px auto;
+  max-width: 700px;
+  color: #ccffff;
+}
+
+.review-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-box {
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid #00ffff33;
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 160px;
+  width: 100%;
+  margin: 0 50px;
+  font-size: 1.2rem;
+  box-shadow: 0 0 10px #00ffff22;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+#reviewText {
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+#reviewAuthor {
+  color: #88ffff;
+  font-weight: bold;
+}
+
+.stars {
+  color: gold;
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #00ffff88;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.nav-button:hover {
+  color: #00ffff;
+}
+
+.nav-button.left {
+  left: 0;
+}
+
+.nav-button.right {
+  right: 0;
+}
+
+
+
+
 
 
 @media screen and (max-width: 768px) {
