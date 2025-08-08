@@ -20,21 +20,25 @@ body {
 } */
 
 
-
 #messageContainer {
   overflow: hidden;
-  height: 2em;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 280px;
+  padding: 0.5em;
+  min-width: 0; 
+  box-sizing: border-box;
 }
 
 .message-text {
-  font-size: 1.6rem;
+  font-size: 1.2rem; 
   text-align: center;
+  line-height: 1.4;
   transition: transform 0.5s ease, opacity 0.5s ease;
   will-change: transform, opacity;
+  word-break: break-word;
+  max-width: 100%;
 }
 
 .slide-out {
@@ -357,9 +361,6 @@ iframe {
 
 
 
-
-
-
 @media screen and (max-width: 768px) {
   .cards {
     flex-direction: column;
@@ -368,5 +369,11 @@ iframe {
 
   .card {
     width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-text {
+    font-size: 1rem;
   }
 }
