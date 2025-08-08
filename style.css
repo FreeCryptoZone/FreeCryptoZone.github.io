@@ -1,5 +1,6 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
+  /* font-family: 'Segoe UI', sans-serif; */
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #0f111a;
@@ -21,26 +22,26 @@ body {
 
 
 #messageContainer {
+  position: relative;
   overflow: hidden;
-  height: auto;
+  min-height: 3em; 
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5em;
-  min-width: 0; 
+  padding: 0 1em;
   box-sizing: border-box;
+  text-align: center;
+  word-break: break-word; 
 }
 
 .message-text {
-  font-size: 1.2rem; 
-  text-align: center;
+  position: relative; 
+  width: 100%;
+  font-size: 1.4rem;
   line-height: 1.4;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  will-change: transform, opacity;
-  word-break: break-word;
-  max-width: 100%;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
 }
-
 .slide-out {
   transform: translateY(-100%);
   opacity: 0;
@@ -62,6 +63,7 @@ body {
     opacity: 1;
   }
 }
+
 
 
 header {
@@ -128,8 +130,8 @@ header {
   height: 350px;
   z-index: 0;
   overflow: hidden;
-  pointer-events: none; /* 防止干擾點擊 */
-  opacity: 0.15; /* 淡化效果，看起來像背景 */
+  pointer-events: none; 
+  opacity: 0.15; 
 }
 
 .header-content {
@@ -152,6 +154,14 @@ header {
   border-bottom: 1px solid #333;
 } */
 
+.decorative-divider {
+  height: 4px;
+  width: 80%;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  margin: 8rem auto;
+  border-radius: 2px;
+}
+
 
 canvas {
   background-color: transparent;
@@ -166,6 +176,7 @@ main {
 }
 
 h1, h2, h3 {
+  font-family: 'Montserrat', 'Arial Black', Arial, sans-serif;
   color: #90caf9;
   margin-bottom: 10px;
 }
@@ -189,12 +200,20 @@ h1, h2, h3 {
   backdrop-filter: blur(8px);
 }
 
+
+.card p {
+  font-size: 1rem;     
+  line-height: 1.5;    
+  margin-top: 0.5em;   
+}
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
 
 .card a {
+  font-size: 1.5rem;  
   color: #82b1ff;
   font-weight: bold;
   text-decoration: none;
@@ -297,6 +316,9 @@ iframe {
   color: #ccffff;
 }
 
+
+
+
 .review-container {
   position: relative;
   display: flex;
@@ -318,7 +340,7 @@ iframe {
   opacity: 1;
 }
 
-#reviewText {
+/* #reviewText {
   font-style: italic;
   margin-bottom: 12px;
 }
@@ -326,7 +348,22 @@ iframe {
 #reviewAuthor {
   color: #88ffff;
   font-weight: bold;
+} */
+
+
+#reviewText {
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 1rem 0;
 }
+
+#reviewAuthor {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #555;
+}
+
 
 .stars {
   color: gold;
