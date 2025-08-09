@@ -36,15 +36,13 @@
 </head>
 
 <body>
-
+  <!-- Loading page -->
   <div id="loadingScreen">
     <div id="progressContainer">
       <div id="progressFill"></div>
       <span id="progressText">0%</span>
     </div>
   </div>
-  
-
 
   <div class="heatmap-bg">
     <script src="https://widgets.coingecko.com/gecko-coin-heatmap-widget.js"></script>
@@ -54,68 +52,62 @@
   <header>
     <h1 class="frosted-text h1"><img src="assets/logo.png" alt="Logo Icon" class="icon" />Free Money & Crypto Zone</h1>
 
-    <div id="messageContainer">
-      <div class="message-text" id="messageText">Loading...</div>
-    </div>
-  
+    <section class="why-free-money">
+      <div class="message-line">💰 Free Cash. Free Crypto.</div>
+      <div class="message-line">✅ 100% Real. Zero Risk.</div>
+      <div class="message-line">Why does free money exist?</div>
+      <div class="message-line">Because big companies are throwing money at user growth.</div>
+      <div class="message-line">They pay people to test games, try apps, answer surveys, watch ads, and promote new cryptocurrencies.</div>
+      <div class="message-line">These small tasks cost you nothing, but companies happily spend millions to get real users.</div>
+      <div class="message-line">Most people ignore it, thinking “it’s not for me.”</div>
+      <div class="message-line">🔥 Now, you know the truth — and you can take your share.</div>
+    </section>
+
+    
     <script>
-      const messages = [
-        "Making extra cash is way easier than you think. No money needed. 😉",
-        "Got 5 mins? Turn it into coffee money with fun games & surveys.",
-        "Zero risk. Zero investment. Just free cash in USDC or BTC.",
-        "Your phone isn’t just for scrolling...It can make you money too.",
-        "We’ve tried these sites 100% free, legit, and worth your time.",
-        "Over a million people are already doing this. Why not you?",
-      ];
-
-
-  
-      let index = 0;
-      let isPaused = false;
-      const textEl = document.getElementById("messageText");
-      const container = document.getElementById("messageContainer");
-  
-      function updateMessage() {
-        if (isPaused) return;
-        textEl.classList.remove("slide-in");
-        textEl.classList.add("slide-out");
-  
-        setTimeout(() => {
-          textEl.textContent = messages[index];
-          textEl.classList.remove("slide-out");
-          textEl.classList.add("slide-in");
-          index = (index + 1) % messages.length;
-        }, 100); // 
-      }
-  
-      let interval = setInterval(updateMessage, 2000);
-      updateMessage();
-  
-      container.addEventListener("mouseenter", () => {
-        isPaused = true;
-      });
-  
-      container.addEventListener("mouseleave", () => {
-        isPaused = false;
+        document.addEventListener("DOMContentLoaded", () => {
+        const lines = document.querySelectorAll(".message-line");
+        const maxDistance = window.innerHeight / 2;
+        window.addEventListener("scroll", () => {
+          const windowCenter = window.innerHeight / 2;
+          lines.forEach((line) => {
+            const rect = line.getBoundingClientRect();
+            const lineCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(lineCenter - windowCenter);
+            const ratio = Math.min(distance / maxDistance, 1);
+            const opacity = 1 - 0.5 * ratio;
+            const colorValue = Math.floor(160 + (255 - 160) * (1 - ratio));
+            const color = `rgb(${colorValue},${colorValue},${colorValue})`;
+            line.style.opacity = opacity;
+            line.style.color = color;
+            line.style.transform = 'translateY(0)';
+          });
+        });
+        window.dispatchEvent(new Event("scroll"));
       });
     </script>
 
   </header>
 
+
+
+
   <main>
+
     <section class="hero">
       <h2>⚡ Top Free Earning Platforms This Week</h2>
-      <p>Active platforms with high rewards. No experience needed!</p>
+      <img src="assets/tasks.png" alt="Complete tasks to earn rewards" class="center-image" />
+
       <div class="cards">
     
         <div class="card">
           <h3><a href="https://freecash.com/r/M2I8S" target="_blank">Freecash</a></h3>
-          <p>Play games, take surveys, earn points redeemable for BTC/USDT.<br><br><strong>Difficulty:</strong> ⭐⭐ (Easy)</p>
+          <p>Play games, take surveys, earn points redeemable for BTC/USDT.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Easy)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://r.honeygain.me/AWERT0513B" target="_blank">Honeygain</a></h3>
-          <p>Share unused internet bandwidth and earn passively. ~$20/month.<br><br><strong>Difficulty:</strong> ⭐ (Very Easy)</p>
+          <p>Share unused internet bandwidth and earn passively. ~$20/month.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Very Easy)</p>
         </div>
     
         <div class="card">
@@ -125,17 +117,17 @@
     
         <div class="card">
           <h3><a href="https://www.swagbucks.com/profile/r_218488875?rp=1" target="_blank">Swagbucks</a></h3>
-          <p>Watch videos, shop, take surveys. PayPal payout supported.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (More steps)</p>
+          <p>Watch videos, shop, take surveys. PayPal payout supported.<br><br><strong>Difficulty:</strong> ⭐ (More steps)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://pawns.app/?r=15933705" target="_blank">Pawns.app</a></h3>
-          <p>Passive earning by sharing your internet bandwidth.<br><br><strong>Difficulty:</strong> ⭐ (Very Easy)</p>
+          <p>Passive earning by sharing your internet bandwidth.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Very Easy)</p>
         </div>
     
       </div>
     </section>
-    <p><strong>Difficulty Guide:</strong> ⭐️ (Fully automated) | ⭐️⭐️ (Simple tasks) | ⭐️⭐️⭐️ (More steps required)</p>
+    <p style="text-align: center;"><strong>Guide:</strong> ⭐⭐⭐️ (Fully automated) | ⭐️⭐️ (Simple tasks) | ⭐️ (More steps required)</p>
     
 
 
@@ -143,17 +135,21 @@
 
 
 
-
     <section class="task-wall">
       <h2>📋 Tap-To-Earn Crypto | Task Wall</h2>
-      <p>Complete the tasks below to earn your first crypto rewards:</p>
-      <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
+      <img src="assets/earn.png" alt="tap-to-earn" class="center-image" />
+      <div id="frame-container" style="width: 100%; margin: auto; position: relative; text-align: center; background: rgba(0, 0, 0, 0.50); z-index: 99998;">
+        <div id="click-arrow" style="margin-bottom: 0.5rem; font-size: 1.4rem; color: #fff; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; user-select: none;">
+          <span>👇 Click here to earn!</span>
+          </div>
+      
         <a target="_blank" href="https://faucetcrypto.com/r/9010975">
-          <img src="assets/300_250_minimalist.gif" width="300" height="250" alt="FaucetCrypto">
+          <img src="assets/300_250_minimalist.gif" width="300" height="250" alt="FaucetCrypto" style="display: inline-block;">
         </a>
       </div>
+      
     
-      <p>Automatic ad-click tasks turn your browsing time into income:</p>
+      <!-- <p>Automatic ad-click tasks turn your browsing time into income:</p> -->
       <div id="frame" style="width: 100%;margin: auto;background: rgba(0, 0, 0, 0.50);position: relative; z-index: 99998;">
         <iframe data-aa='2405825' src='//acceptable.a-ads.com/2405825/?size=Adaptive'
                 style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
@@ -213,7 +209,7 @@
     
     <section class="faq">
       <h2>❓ FAQs</h2>
-      <ul>
+      <ul style="text-align: center;">
         <li><strong>Q: Are these platforms legit?</strong><br>A: Yes, we only share trusted, tested platforms.</li>
         <li><strong>Q: Can I use my phone?</strong><br>A: Definitely! Most platforms work great on mobile.</li>
         <li><strong>Q: Do I need to share personal info?</strong><br>A: No, many let you withdraw via gift cards or crypto wallets like <a href="https://metamask.io" target="_blank">MetaMask</a>.</li>
@@ -229,12 +225,12 @@
 
     <section class="dashboard-section">
       <h2>🙏 Support Us with Crypto Donations</h2>
-      <p>Love our free resources? A small crypto tip from you keeps us going and improving!</p>
+      <p style="text-align: center;">Love our free resources? A small crypto tip from you keeps us going and improving!</p>
       <div class="wallet-section">
-        <p><strong>BTC：</strong> <span class="wallet" onclick="copyToClipboard('btc-wallet')"> <code id="btc-wallet">bc1qru0hmckv287qc640me3e3hduhvcj5ehshk4y3y</code> <button>📋 Copy</button></span></p>
-        <p><strong>SOL：</strong> <span class="wallet" onclick="copyToClipboard('sol-wallet')"> <code id="sol-wallet">3RTuRbgKhzcY9JkDd4Rk2b6BpcRtmY4mfdn1ytB5ss2T</code> <button>📋 Copy</button></span></p>
-        <p><strong>ETH：</strong> <span class="wallet" onclick="copyToClipboard('eth-wallet')"> <code id="eth-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 Copy</button></span></p>
-        <p><strong>BASE：</strong> <span class="wallet" onclick="copyToClipboard('base-wallet')"> <code id="base-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 Copy</button></span></p>
+        <p style="text-align: center;"><strong>BTC：</strong> <span class="wallet" onclick="copyToClipboard('btc-wallet')"> <code id="btc-wallet">bc1qru0hmckv287qc640me3e3hduhvcj5ehshk4y3y</code> <button>📋 Copy</button></span></p>
+        <p style="text-align: center;"><strong>SOL：</strong> <span class="wallet" onclick="copyToClipboard('sol-wallet')"> <code id="sol-wallet">3RTuRbgKhzcY9JkDd4Rk2b6BpcRtmY4mfdn1ytB5ss2T</code> <button>📋 Copy</button></span></p>
+        <p style="text-align: center;"><strong>ETH：</strong> <span class="wallet" onclick="copyToClipboard('eth-wallet')"> <code id="eth-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 Copy</button></span></p>
+        <p style="text-align: center;"><strong>BASE：</strong> <span class="wallet" onclick="copyToClipboard('base-wallet')"> <code id="base-wallet">0x15a921bD335263406FfF28605A0b9d4909882fB6</code> <button>📋 Copy</button></span></p>
       </div>
     </section>
     
