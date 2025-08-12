@@ -106,12 +106,15 @@
 
   <div class="container" role="button" tabindex="0" aria-label="Click to sign in with Google and claim points">
     <div id="g_id_signin"></div>
-
+  
     <svg class="gift-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img">
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#00fff7;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#0066ff;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#ff4e50;stop-opacity:1" />   <!-- 紅 -->
+          <stop offset="35%" style="stop-color:#f9d423;stop-opacity:1" />  <!-- 黃 -->
+          <stop offset="70%" style="stop-color:#1fa2ff;stop-opacity:1" />  <!-- 藍 -->
+          <stop offset="85%" style="stop-color:#12d8fa;stop-opacity:1" />  <!-- 淺藍 -->
+          <stop offset="100%" style="stop-color:#a6ffcb;stop-opacity:1" /> <!-- 淺綠 -->
         </linearGradient>
       </defs>
       <rect x="8" y="20" width="48" height="36" rx="4" ry="4" fill="url(#grad1)" />
@@ -119,7 +122,7 @@
       <path d="M32 20v36" stroke="white" stroke-width="4" stroke-linecap="round"/>
       <path d="M24 4a8 8 0 0 1 16 0v8H24z" fill="url(#grad1)" />
     </svg>
-
+  
     <div class="hint-text">Click to sign in and claim points!</div>
     <div class="points-display" id="pointsDisplay">Point：-</div>
   </div>
@@ -138,6 +141,12 @@
         { theme: "outline", size: "large" }
       );
     };
+
+      // 讓整個 container 點擊時呼叫 Google Sign-In 彈窗
+    const container = document.querySelector(".container");
+    container.addEventListener("click", () => {
+      google.accounts.id.prompt();
+    });
   
     function handleCredentialResponse(response) {
       console.log("Google ID Token:", response.credential);
