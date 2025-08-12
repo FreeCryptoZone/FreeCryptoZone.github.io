@@ -19,6 +19,7 @@
     gtag('config', 'G-VSXQL1X9RR');
   </script>
   <title>FreeMoneyCryptoZone | Best Sites to Earn Free Money and Crypto Online</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
@@ -40,8 +41,6 @@
     (function(){var b=window,j="f292ddf70b1807e9770a9ed2ee4045b5",h=[["siteId",126+496*319*968+470-147935288],["minBid",0.001],["popundersPerIP","0"],["delayBetween",30],["default","https://faucetcrypto.com/r/9010975"],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LnByZW1pdW12ZXJ0aXNpbmcuY29tL2FEZ2pPUS9vY29sb3JzLm1pbi5qcw==","ZDJqMDQyY2oxNDIxd2kuY2xvdWRmcm9udC5uZXQvaGxJYS9jL3Fid2lwLWpzLW1pbi5jc3M="],f=-1,z,y,p=function(){clearTimeout(y);f++;if(n[f]&&!(1780727388000<(new Date).getTime()&&1<f)){z=b.document.createElement("script");z.type="text/javascript";z.async=!0;var d=b.document.getElementsByTagName("script")[0];z.src="https://"+atob(n[f]);z.crossOrigin="anonymous";z.onerror=p;z.onload=function(){clearTimeout(y);b[j.slice(0,16)+j.slice(0,16)]||p()};y=setTimeout(p,5E3);d.parentNode.insertBefore(z,d)}};if(!b[j]){try{Object.freeze(b[j]=h)}catch(e){}p()}})();
     /*]]>/* */
     </script>
-    
-    
     
     
 
@@ -102,7 +101,144 @@
   </header>
 
 
+  
 
+
+
+  <div class="container" role="button" tabindex="0" aria-label="Click to sign in with Google and claim points">
+    <!-- Google 官方登入按鈕，透明覆蓋確保點擊生效 -->
+    <div id="g_id_signin"></div>
+
+    <!-- 禮物圖示 -->
+    <svg class="gift-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#00fff7;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0066ff;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect x="8" y="20" width="48" height="36" rx="4" ry="4" />
+      <path d="M8 28h48" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <path d="M32 20v36" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <path d="M24 4a8 8 0 0 1 16 0v8H24z" fill="url(#grad1)" />
+    </svg>
+
+    <!-- 提示文字 -->
+    <div class="hint-text">Click to sign in and claim points!</div>
+    <div class="points-display" id="pointsDisplay">Point：-</div>
+  </div>
+
+  <!-- <script>
+    window.onload = () => {
+      google.accounts.id.initialize({
+        client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com", // 換成你的client_id
+        callback: (res) => {
+          console.log("Google ID Token:", res.credential);
+          // 這裡可以加後端驗證與積分更新流程
+        }
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("g_id_signin"),
+        { theme: "outline", size: "large" }
+      );
+    };
+  </script> -->
+  
+
+
+  <script>
+    const pointsDisplay = document.getElementById('pointsDisplay');
+  
+    window.onload = () => {
+      google.accounts.id.initialize({
+        client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com", 
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("g_id_signin"),
+        { theme: "outline", size: "large" }
+      );
+    };
+  
+    function handleCredentialResponse(response) {
+      console.log("Google ID Token:", response.credential);
+  
+      // 呼叫你的 Apps Script Web App 來驗證並更新積分
+      fetch("https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec", { 
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.success){
+          pointsDisplay.innerText = `Point：${data.points}`;
+        } else {
+          alert("Login Error：" + (data.error || "Unknown"));
+          pointsDisplay.innerText = "Point：-";
+        }
+      })
+      .catch(err => {
+        alert("Request Error：" + err);
+        pointsDisplay.innerText = "Point：-";
+      });
+    }
+  </script>
+
+
+
+
+  <!-- Google 登入按鈕（隱藏，點禮物盒觸發）
+  <div id="g_id_onload"
+  data-client_id="308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com"
+  data-callback="handleCredentialResponse"
+  style="display:none;">
+  </div>
+
+  <div class="gift" id="giftBox">
+  <div class="lid"></div>
+  <div class="box"></div>
+  <div class="ribbon vertical"></div>
+  <div class="ribbon horizontal"></div>
+  </div>
+<div class="points" id="pointsDisplay">積分：0</div> -->
+
+  
+  <!-- <script>
+    // 先初始化
+    google.accounts.id.initialize({
+      client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+  
+    const lid = document.querySelector('.lid');
+    const pointsDisplay = document.getElementById('pointsDisplay');
+  
+    document.getElementById('giftBox').addEventListener('click', () => {
+      console.log("禮物盒被點擊了！");
+      // google.accounts.id.prompt();  // 先暫時註解，測試點擊事件
+    });
+  
+    function handleCredentialResponse(response) {
+      fetch("https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec", {
+        method: "POST",
+        body: JSON.stringify({ token: response.credential }),
+        headers: { "Content-Type": "application/json" }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          lid.classList.add('open');
+          pointsDisplay.innerText = "積分：" + data.points;
+          pointsDisplay.classList.add('show');
+        } else {
+          alert("登入失敗：" + data.error);
+        }
+      })
+      .catch(err => alert("發生錯誤：" + err));
+    }
+  </script>  -->
+  
 
   <main>
 
@@ -114,27 +250,27 @@
     
         <div class="card">
           <h3><a href="https://freecash.com/r/M2I8S" target="_blank">Freecash</a></h3>
-          <p>Play games, take surveys, earn points redeemable for BTC/USDT.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Easy)</p>
+          <p>Play games, take surveys, earn points redeemable for BTC/USDT.<br><br><strong>Rating:</strong> ⭐⭐⭐ (Easy)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://r.honeygain.me/AWERT0513B" target="_blank">Honeygain</a></h3>
-          <p>Share unused internet bandwidth and earn passively. ~$20/month.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Very Easy)</p>
+          <p>Share unused internet bandwidth and earn passively. ~$20/month.<br><br><strong>Rating:</strong> ⭐⭐⭐ (Very Easy)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://www.idle-empire.com?r=zaogw7" target="_blank">Idle-Empire</a></h3>
-          <p>Complete surveys, play games, watch videos, then cash out.<br><br><strong>Difficulty:</strong> ⭐⭐ (Moderate)</p>
+          <p>Complete surveys, play games, watch videos, then cash out.<br><br><strong>Rating:</strong> ⭐⭐ (Moderate)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://www.swagbucks.com/profile/r_218488875?rp=1" target="_blank">Swagbucks</a></h3>
-          <p>Watch videos, shop, take surveys. PayPal payout supported.<br><br><strong>Difficulty:</strong> ⭐ (More steps)</p>
+          <p>Watch videos, shop, take surveys. PayPal payout supported.<br><br><strong>Rating:</strong> ⭐ (More steps)</p>
         </div>
     
         <div class="card">
           <h3><a href="https://pawns.app/?r=15933705" target="_blank">Pawns.app</a></h3>
-          <p>Passive earning by sharing your internet bandwidth.<br><br><strong>Difficulty:</strong> ⭐⭐⭐ (Very Easy)</p>
+          <p>Passive earning by sharing your internet bandwidth.<br><br><strong>Rating:</strong> ⭐⭐⭐ (Very Easy)</p>
         </div>
     
       </div>

@@ -188,6 +188,90 @@ header {
   text-align: center;
 }
 
+
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;  
+  align-items: center;     
+  gap: 14px;
+  position: relative;
+  min-width: 280px; 
+  max-width: 80%;  
+  height: 50px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #1e2233;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(65, 105, 225, 0.6);
+  padding: 0 15px;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+#g_id_signin {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0;
+  z-index: 10;
+  border-radius: 14px;
+}
+.hint-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00fff7, #0066ff, #a366ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  white-space: nowrap;
+
+
+  -webkit-text-stroke: 1px rgba(0, 255, 247, 0.9);
+  text-stroke: 1px rgba(0, 255, 247, 0.9);
+
+ 
+  text-shadow:
+    0 0 1px #00fff7,
+    0 0 2px #0066ff,
+    0 0 3px #a366ff;
+
+  animation: flicker 3s infinite alternate;
+}
+@keyframes flicker {
+  0%, 100% {
+    text-shadow:
+      0 0 1px #00fff7,
+      0 0 2px #0066ff,
+      0 0 3px #a366ff;
+  }
+  50% {
+    text-shadow:
+      0 0 1px #00fff7,
+      0 0 2px #0066ff,
+      0 0 3px #a366ff;
+  }
+}
+.gift-icon {
+  width: 36px;
+  height: 36px;
+  fill: url(#grad1);
+  flex-shrink: 0;
+  pointer-events: none; /* 讓滑鼠事件穿透禮物圖，確保點擊會到透明按鈕 */
+}
+
+
+
+
+
 /* .header-content {
   position: relative;
   z-index: 1;
