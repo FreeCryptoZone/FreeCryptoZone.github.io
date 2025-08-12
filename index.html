@@ -124,7 +124,47 @@
     <div class="points-display" id="pointsDisplay">Point：-</div>
   </div>
 
+
   <script>
+    const pointsDisplay = document.getElementById('pointsDisplay');
+
+    window.onload = () => {
+      google.accounts.id.initialize({
+        client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("g_id_signin"),
+        { theme: "outline", size: "large" }
+      );
+    };
+
+    function handleCredentialResponse(response) {
+      console.log("Google ID Token:", response.credential);
+
+      // 用 GET 方式帶 token 呼叫 Apps Script，避免 CORS 預檢問題
+      fetch(`https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.points !== undefined) {
+            pointsDisplay.innerText = `Point：${data.points}`;
+            alert(data.message || "簽到成功");
+          } else if(data.error){
+            alert("Login Error：" + data.error);
+            pointsDisplay.innerText = "Point：-";
+          }
+        })
+        .catch(err => {
+          alert("Request Error：" + err);
+          pointsDisplay.innerText = "Point：-";
+        });
+    }
+  </script>
+
+
+
+
+  <!-- <script>
     window.addEventListener('load', () => {
       google.accounts.id.initialize({
         client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
@@ -162,7 +202,7 @@
         pointsDisplay.innerText = "Point：-";
       });
     }
-  </script>
+  </script> -->
 
   
 
