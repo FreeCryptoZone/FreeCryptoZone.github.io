@@ -127,7 +127,7 @@
 
   <script>
     const pointsDisplay = document.getElementById('pointsDisplay');
-
+  
     window.onload = () => {
       google.accounts.id.initialize({
         client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
@@ -138,28 +138,31 @@
         { theme: "outline", size: "large" }
       );
     };
-
+  
     function handleCredentialResponse(response) {
       console.log("Google ID Token:", response.credential);
-
-      // 用 GET 方式帶 token 呼叫 Apps Script，避免 CORS 預檢問題
-      fetch(`https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.points !== undefined) {
-            pointsDisplay.innerText = `Point：${data.points}`;
-            alert(data.message || "簽到成功");
-          } else if(data.error){
-            alert("Login Error：" + data.error);
-            pointsDisplay.innerText = "Point：-";
-          }
-        })
-        .catch(err => {
-          alert("Request Error：" + err);
+      const callbackName = 'jsonpCallback_' + Math.floor(Math.random() * 100000);
+  
+      const script = document.createElement('script');
+  
+      window[callbackName] = function(data) {
+        if (data.points !== undefined) {
+          pointsDisplay.innerText = `Point：${data.points}`;
+          alert(data.message || "簽到成功");
+        } else if (data.error) {
+          alert("Login Error：" + data.error);
           pointsDisplay.innerText = "Point：-";
-        });
+        }
+        // 清除 callback 和 script
+        delete window[callbackName];
+        document.body.removeChild(script);
+      };
+  
+      script.src = `https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}&callback=${callbackName}`;
+      document.body.appendChild(script);
     }
   </script>
+  
 
 
 
