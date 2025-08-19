@@ -174,9 +174,13 @@
     window[callbackName] = function(data) {
       if (data.points !== undefined) {
         pointsDisplay.innerText = `Point：${data.points}`;
-        hintText.innerText = "You have successfully claimed points 🎉";
+        hintText.innerText = data.message;;
         // countdown
-        startCountdown(10 * 60);
+        // startCountdown(10 * 60);
+        // Wait 2 sec before countdown
+        setTimeout(() => {
+          startCountdown(10 * 60);
+        }, 2000);
       } else if (data.error) {
         alert("Login Error：" + data.error);
         pointsDisplay.innerText = "Point：-";
@@ -209,7 +213,7 @@
       } else {
         const mins = Math.floor(remaining / 60);
         const secs = remaining % 60;
-        hintText.innerText = `Next check-in in: ${mins}m ${secs}s`;
+        hintText.innerText = `Next claim available in: ${mins}m ${secs}s`;
         remaining--;
       }
     }, 1000);
