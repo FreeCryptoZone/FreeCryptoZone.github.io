@@ -110,11 +110,11 @@
     <svg class="gift-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img">
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#ff4e50;stop-opacity:1" />   <!-- 紅 -->
-          <stop offset="35%" style="stop-color:#f9d423;stop-opacity:1" />  <!-- 黃 -->
-          <stop offset="70%" style="stop-color:#1fa2ff;stop-opacity:1" />  <!-- 藍 -->
-          <stop offset="85%" style="stop-color:#12d8fa;stop-opacity:1" />  <!-- 淺藍 -->
-          <stop offset="100%" style="stop-color:#a6ffcb;stop-opacity:1" /> <!-- 淺綠 -->
+          <stop offset="0%" style="stop-color:#ff4e50;stop-opacity:1" />   
+          <stop offset="35%" style="stop-color:#f9d423;stop-opacity:1" />  
+          <stop offset="70%" style="stop-color:#1fa2ff;stop-opacity:1" />  
+          <stop offset="85%" style="stop-color:#12d8fa;stop-opacity:1" />  
+          <stop offset="100%" style="stop-color:#a6ffcb;stop-opacity:1" /> 
         </linearGradient>
       </defs>
       <rect x="8" y="20" width="48" height="36" rx="4" ry="4" fill="url(#grad1)" />
@@ -123,13 +123,16 @@
       <path d="M24 4a8 8 0 0 1 16 0v8H24z" fill="url(#grad1)" />
     </svg>
   
-    <div class="hint-text">Click to sign in and claim points!</div>
+    <div class="hint-text" id="hintText">Claim Points! – Secured by Google</div>
     <div class="points-display" id="pointsDisplay">Point：-</div>
   </div>
-
-
+  
   <script>
     const pointsDisplay = document.getElementById('pointsDisplay');
+    const hintText = document.getElementById('hintText');
+    const container = document.querySelector(".container");
+  
+    let countdownInterval;
   
     window.onload = () => {
       google.accounts.id.initialize({
@@ -141,28 +144,27 @@
         { theme: "outline", size: "large" }
       );
     };
-
-      // 讓整個 container 點擊時呼叫 Google Sign-In 彈窗
-    const container = document.querySelector(".container");
+  
     container.addEventListener("click", () => {
-      google.accounts.id.prompt();
+      if (!container.classList.contains("disabled")) {
+        google.accounts.id.prompt();
+      }
     });
   
     function handleCredentialResponse(response) {
-      console.log("Google ID Token:", response.credential);
       const callbackName = 'jsonpCallback_' + Math.floor(Math.random() * 100000);
-  
       const script = document.createElement('script');
   
       window[callbackName] = function(data) {
         if (data.points !== undefined) {
           pointsDisplay.innerText = `Point：${data.points}`;
-          alert(data.message || "簽到成功");
+          hintText.innerText = "You have successfully claimed points 🎉";
+          startCountdown(10 * 60);
+  
         } else if (data.error) {
           alert("Login Error：" + data.error);
           pointsDisplay.innerText = "Point：-";
         }
-        // 清除 callback 和 script
         delete window[callbackName];
         document.body.removeChild(script);
       };
@@ -170,51 +172,29 @@
       script.src = `https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}&callback=${callbackName}`;
       document.body.appendChild(script);
     }
-  </script>
   
-
-
-
-
-  <!-- <script>
-    window.addEventListener('load', () => {
-      google.accounts.id.initialize({
-        client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-      });
-      google.accounts.id.renderButton(
-        document.getElementById("g_id_signin"),
-        { theme: "outline", size: "large" }
-      );
-      // 可啟用自動提示 Google One Tap（非必須）
-      // google.accounts.id.prompt();
-    });
-
-    const pointsDisplay = document.getElementById('pointsDisplay');
-
-    function handleCredentialResponse(response) {
-      console.log("Google ID Token:", response.credential);
-
-      fetch("https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: response.credential })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if(data.success){
-          pointsDisplay.innerText = `Point：${data.points}`;
+    function startCountdown(seconds) {
+      container.classList.add("disabled");
+      container.style.cursor = "not-allowed";
+  
+      clearInterval(countdownInterval);
+      let remaining = seconds;
+  
+      countdownInterval = setInterval(() => {
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          container.classList.remove("disabled");
+          container.style.cursor = "pointer";
+          hintText.innerText = "Claim Points! – Secured by Google";
         } else {
-          alert("Login Error：" + (data.error || "Unknown"));
-          pointsDisplay.innerText = "Point：-";
+          const mins = Math.floor(remaining / 60);
+          const secs = remaining % 60;
+          hintText.innerText = `Next check-in in: ${mins}m ${secs}s`;
+          remaining--;
         }
-      })
-      .catch(err => {
-        alert("Request Error：" + err);
-        pointsDisplay.innerText = "Point：-";
-      });
+      }, 1000);
     }
-  </script> -->
+  </script>
 
   
 
