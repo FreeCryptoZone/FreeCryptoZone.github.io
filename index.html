@@ -104,17 +104,17 @@
   
 
 
-  <div class="container" role="button" tabindex="0" aria-label="Click to sign in with Google and claim points">
+  <div class="container" style="position: relative; width: 300px; text-align: center; cursor: pointer;">
     <div id="g_id_signin"></div>
   
-    <svg class="gift-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img">
+    <svg class="gift-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" style="width:64px; height:64px; margin: 10px auto;">
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#ff4e50;stop-opacity:1" />   
-          <stop offset="35%" style="stop-color:#f9d423;stop-opacity:1" />  
-          <stop offset="70%" style="stop-color:#1fa2ff;stop-opacity:1" />  
-          <stop offset="85%" style="stop-color:#12d8fa;stop-opacity:1" />  
-          <stop offset="100%" style="stop-color:#a6ffcb;stop-opacity:1" /> 
+          <stop offset="0%" style="stop-color:#ff4e50;stop-opacity:1" />
+          <stop offset="35%" style="stop-color:#f9d423;stop-opacity:1" />
+          <stop offset="70%" style="stop-color:#1fa2ff;stop-opacity:1" />
+          <stop offset="85%" style="stop-color:#12d8fa;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#a6ffcb;stop-opacity:1" />
         </linearGradient>
       </defs>
       <rect x="8" y="20" width="48" height="36" rx="4" ry="4" fill="url(#grad1)" />
@@ -123,77 +123,97 @@
       <path d="M24 4a8 8 0 0 1 16 0v8H24z" fill="url(#grad1)" />
     </svg>
   
-    <div class="hint-text" id="hintText">Claim Points! – Secured by Google</div>
+    <div class="hint-text" id="hintText" style="margin:10px 0; font-weight:bold;">Claim Points – Secured by Google</div>
+  
     <div class="points-display" id="pointsDisplay">Point：-</div>
+  
+    <div id="overlay" style="
+        position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255,255,255,0);
+        display: none;
+        cursor: not-allowed;
+        z-index: 10;
+    "></div>
   </div>
   
   <script>
-    const pointsDisplay = document.getElementById('pointsDisplay');
-    const hintText = document.getElementById('hintText');
-    const container = document.querySelector(".container");
+  const pointsDisplay = document.getElementById('pointsDisplay');
+  const hintText = document.getElementById('hintText');
+  const container = document.querySelector(".container");
+  const overlay = document.getElementById('overlay');
   
-    let countdownInterval;
+  let countdownInterval;
   
-    window.onload = () => {
-      google.accounts.id.initialize({
-        client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
-        callback: handleCredentialResponse
-      });
-      google.accounts.id.renderButton(
-        document.getElementById("g_id_signin"),
-        { theme: "outline", size: "large" }
-      );
+  window.onload = () => {
+    google.accounts.id.initialize({
+      client_id: "308329141081-dojiuh509bdgc0hfa7uc4uk0otcue2gu.apps.googleusercontent.com",
+      callback: handleCredentialResponse
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("g_id_signin"),
+      { theme: "outline", size: "large" }
+    );
+  };
+  
+  // Google Sign-in
+  container.addEventListener("click", () => {
+    if (!container.classList.contains("disabled")) {
+      google.accounts.id.prompt();
+    }
+  });
+  
+  // Google processing
+  function handleCredentialResponse(response) {
+    hintText.innerText = "Processing… Please wait ⏳";
+    container.classList.add("disabled");
+    overlay.style.display = "block";
+  
+    const callbackName = 'jsonpCallback_' + Math.floor(Math.random() * 100000);
+    const script = document.createElement('script');
+  
+    window[callbackName] = function(data) {
+      if (data.points !== undefined) {
+        pointsDisplay.innerText = `Point：${data.points}`;
+        hintText.innerText = "You have successfully claimed points 🎉";
+        // countdown
+        startCountdown(10 * 60);
+      } else if (data.error) {
+        alert("Login Error：" + data.error);
+        pointsDisplay.innerText = "Point：-";
+        hintText.innerText = "Claim Points – Secured by Google";
+        container.classList.remove("disabled");
+        overlay.style.display = "none";
+      }
+      delete window[callbackName];
+      document.body.removeChild(script);
     };
   
-    container.addEventListener("click", () => {
-      if (!container.classList.contains("disabled")) {
-        google.accounts.id.prompt();
+    script.src = `https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}&callback=${callbackName}`;
+    document.body.appendChild(script);
+  }
+  
+  // countdown fcn
+  function startCountdown(seconds) {
+    container.classList.add("disabled");
+    overlay.style.display = "block";
+  
+    clearInterval(countdownInterval);
+    let remaining = seconds;
+  
+    countdownInterval = setInterval(() => {
+      if (remaining <= 0) {
+        clearInterval(countdownInterval);
+        container.classList.remove("disabled");
+        overlay.style.display = "none";
+        hintText.innerText = "Claim Points – Secured by Google";
+      } else {
+        const mins = Math.floor(remaining / 60);
+        const secs = remaining % 60;
+        hintText.innerText = `Next check-in in: ${mins}m ${secs}s`;
+        remaining--;
       }
-    });
-  
-    function handleCredentialResponse(response) {
-      const callbackName = 'jsonpCallback_' + Math.floor(Math.random() * 100000);
-      const script = document.createElement('script');
-  
-      window[callbackName] = function(data) {
-        if (data.points !== undefined) {
-          pointsDisplay.innerText = `Point：${data.points}`;
-          hintText.innerText = "You have successfully claimed points 🎉";
-          startCountdown(10 * 60);
-  
-        } else if (data.error) {
-          alert("Login Error：" + data.error);
-          pointsDisplay.innerText = "Point：-";
-        }
-        delete window[callbackName];
-        document.body.removeChild(script);
-      };
-  
-      script.src = `https://script.google.com/macros/s/AKfycbxZBtiwNWxDBs_L8xwMOJujSh6IKWPntBSTcOd6pPPutUzMiTAOuSdSipnB0-Cuenjo/exec?id_token=${encodeURIComponent(response.credential)}&callback=${callbackName}`;
-      document.body.appendChild(script);
-    }
-  
-    function startCountdown(seconds) {
-      container.classList.add("disabled");
-      container.style.cursor = "not-allowed";
-  
-      clearInterval(countdownInterval);
-      let remaining = seconds;
-  
-      countdownInterval = setInterval(() => {
-        if (remaining <= 0) {
-          clearInterval(countdownInterval);
-          container.classList.remove("disabled");
-          container.style.cursor = "pointer";
-          hintText.innerText = "Claim Points! – Secured by Google";
-        } else {
-          const mins = Math.floor(remaining / 60);
-          const secs = remaining % 60;
-          hintText.innerText = `Next check-in in: ${mins}m ${secs}s`;
-          remaining--;
-        }
-      }, 1000);
-    }
+    }, 1000);
+  }
   </script>
 
   
