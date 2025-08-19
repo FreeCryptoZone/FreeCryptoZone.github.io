@@ -141,6 +141,7 @@
   const hintText = document.getElementById('hintText');
   const container = document.querySelector(".container");
   const overlay = document.getElementById('overlay');
+  const COOLDOWN_MINUTES = 10;
   
   let countdownInterval;
   
@@ -175,11 +176,17 @@
       if (data.points !== undefined) {
         pointsDisplay.innerText = `Point：${data.points}`;
         hintText.innerText = data.message;;
-        // countdown
-        // startCountdown(10 * 60);
+
+        let remainingSec = COOLDOWN_MINUTES * 60;
+        if (data.lastCheckin) {
+          const last = new Date(data.lastCheckin);
+          const now = new Date();
+          remainingSec = Math.max(0, COOLDOWN_MINUTES * 60 - Math.floor((now - last) / 1000));
+        }
+
         // Wait 2 sec before countdown
         setTimeout(() => {
-          startCountdown(10 * 60);
+          startCountdown(remainingSec);
         }, 2000);
       } else if (data.error) {
         alert("Login Error：" + data.error);
