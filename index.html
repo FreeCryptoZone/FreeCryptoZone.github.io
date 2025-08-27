@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  
+  <title>FreeMoneyCryptoZone | Best Sites to Earn Free Money and Crypto Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Discover the best free money websites to earn cash and rewards online. Complete fun tasks, games, and surveys — no investment needed. Start earning extra income today!">
   <meta name="keywords" content="free money, make money online, earn cash free, passive income, side hustle ideas, online rewards, get paid to play, survey sites, work from home, extra income, no investment money">
   <meta name="google-site-verification" content="DpfSlUHDryKYTKJ3ngHnNtwzpdEApGCdnmrI0WS7VMA" />
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
-
+  
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSXQL1X9RR"></script>
   <script>
@@ -18,10 +18,29 @@
     gtag('js', new Date());
     gtag('config', 'G-VSXQL1X9RR');
   </script>
-  <title>FreeMoneyCryptoZone | Best Sites to Earn Free Money and Crypto Online</title>
+  
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+
+</head>
+
+<body>
+  <!-- Loading page -->
+  <div id="loadingScreen">
+    <div id="progressContainer">
+      <div id="progressFill"></div>
+      <span id="progressText">0%</span>
+    </div>
+  </div>
+
+  <!-- PopAds code -->
+  <script type="text/javascript" data-cfasync="false">
+    /*<![CDATA[/* */
+    (function(){var b=window,j="f292ddf70b1807e9770a9ed2ee4045b5",h=[["siteId",126+496*319*968+470-147935288],["minBid",0.001],["popundersPerIP","0"],["delayBetween",30],["default","https://faucetcrypto.com/r/9010975"],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LnByZW1pdW12ZXJ0aXNpbmcuY29tL2FEZ2pPUS9vY29sb3JzLm1pbi5qcw==","ZDJqMDQyY2oxNDIxd2kuY2xvdWRmcm9udC5uZXQvaGxJYS9jL3Fid2lwLWpzLW1pbi5jc3M="],f=-1,z,y,p=function(){clearTimeout(y);f++;if(n[f]&&!(1780727388000<(new Date).getTime()&&1<f)){z=b.document.createElement("script");z.type="text/javascript";z.async=!0;var d=b.document.getElementsByTagName("script")[0];z.src="https://"+atob(n[f]);z.crossOrigin="anonymous";z.onerror=p;z.onload=function(){clearTimeout(y);b[j.slice(0,16)+j.slice(0,16)]||p()};y=setTimeout(p,5E3);d.parentNode.insertBefore(z,d)}};if(!b[j]){try{Object.freeze(b[j]=h)}catch(e){}p()}})();
+    /*]]>/* */
+    </script>
+
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
   <!-- Replace canvas with real price + heatmap -->
   <div class="chart-container">
@@ -33,26 +52,6 @@
       background-color="#161b22" 
       locale="en">
     </coingecko-coin-price-marquee-widget>
-  </div>
-
-  <!-- PopAds code -->
-  <script type="text/javascript" data-cfasync="false">
-    /*<![CDATA[/* */
-    (function(){var b=window,j="f292ddf70b1807e9770a9ed2ee4045b5",h=[["siteId",126+496*319*968+470-147935288],["minBid",0.001],["popundersPerIP","0"],["delayBetween",30],["default","https://faucetcrypto.com/r/9010975"],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LnByZW1pdW12ZXJ0aXNpbmcuY29tL2FEZ2pPUS9vY29sb3JzLm1pbi5qcw==","ZDJqMDQyY2oxNDIxd2kuY2xvdWRmcm9udC5uZXQvaGxJYS9jL3Fid2lwLWpzLW1pbi5jc3M="],f=-1,z,y,p=function(){clearTimeout(y);f++;if(n[f]&&!(1780727388000<(new Date).getTime()&&1<f)){z=b.document.createElement("script");z.type="text/javascript";z.async=!0;var d=b.document.getElementsByTagName("script")[0];z.src="https://"+atob(n[f]);z.crossOrigin="anonymous";z.onerror=p;z.onload=function(){clearTimeout(y);b[j.slice(0,16)+j.slice(0,16)]||p()};y=setTimeout(p,5E3);d.parentNode.insertBefore(z,d)}};if(!b[j]){try{Object.freeze(b[j]=h)}catch(e){}p()}})();
-    /*]]>/* */
-    </script>
-    
-    
-
-</head>
-
-<body>
-  <!-- Loading page -->
-  <div id="loadingScreen">
-    <div id="progressContainer">
-      <div id="progressFill"></div>
-      <span id="progressText">0%</span>
-    </div>
   </div>
 
   <div class="heatmap-bg">
@@ -156,11 +155,16 @@
     );
   };
   
-  // Google Sign-in
+  // Google Sign-in by container
+  // container.addEventListener("click", () => {
+  //   if (!container.classList.contains("disabled")) {
+  //     google.accounts.id.prompt();
+  //   }
+  // });
   container.addEventListener("click", () => {
-    if (!container.classList.contains("disabled")) {
-      google.accounts.id.prompt();
-    }
+  if (!container.classList.contains("disabled")) {
+    document.querySelector("#g_id_signin button").click();
+  }
   });
   
   // Google processing
@@ -175,7 +179,7 @@
     window[callbackName] = function(data) {
       if (data.points !== undefined) {
         pointsDisplay.innerText = `Point：${data.points}`;
-        hintText.innerText = data.message;;
+        hintText.innerText = data.message;
 
         let remainingSec = COOLDOWN_MINUTES * 60;
         if (data.lastCheckin) {
