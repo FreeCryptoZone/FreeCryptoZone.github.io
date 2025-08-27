@@ -9,7 +9,7 @@
   <meta name="google-site-verification" content="DpfSlUHDryKYTKJ3ngHnNtwzpdEApGCdnmrI0WS7VMA" />
 
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
-  
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-VSXQL1X9RR"></script>
   <script>
@@ -37,9 +37,10 @@
   <!-- PopAds code -->
   <script type="text/javascript" data-cfasync="false">
     /*<![CDATA[/* */
-    (function(){var b=window,j="f292ddf70b1807e9770a9ed2ee4045b5",h=[["siteId",126+496*319*968+470-147935288],["minBid",0.001],["popundersPerIP","0"],["delayBetween",30],["default","https://faucetcrypto.com/r/9010975"],["defaultPerDay",0],["topmostLayer","auto"]],n=["d3d3LnByZW1pdW12ZXJ0aXNpbmcuY29tL2FEZ2pPUS9vY29sb3JzLm1pbi5qcw==","ZDJqMDQyY2oxNDIxd2kuY2xvdWRmcm9udC5uZXQvaGxJYS9jL3Fid2lwLWpzLW1pbi5jc3M="],f=-1,z,y,p=function(){clearTimeout(y);f++;if(n[f]&&!(1780727388000<(new Date).getTime()&&1<f)){z=b.document.createElement("script");z.type="text/javascript";z.async=!0;var d=b.document.getElementsByTagName("script")[0];z.src="https://"+atob(n[f]);z.crossOrigin="anonymous";z.onerror=p;z.onload=function(){clearTimeout(y);b[j.slice(0,16)+j.slice(0,16)]||p()};y=setTimeout(p,5E3);d.parentNode.insertBefore(z,d)}};if(!b[j]){try{Object.freeze(b[j]=h)}catch(e){}p()}})();
+    (function(){var z=window,o="f292ddf70b1807e9770a9ed2ee4045b5",v=[["siteId",469-459*58-722+661+5252354],["minBid",0],["popundersPerIP","10:1,5:1"],["delayBetween",10],["default","https://faucetcrypto.com/r/9010975"],["defaultPerDay",0],["topmostLayer","auto"]],e=["d3d3LnByZW1pdW12ZXJ0aXNpbmcuY29tL05HSnhmSy91c2NyaXB0Lm1pbi5qcw==","ZDJqMDQyY2oxNDIxd2kuY2xvdWRmcm9udC5uZXQvWU5ld2hJL1F2L21pTm90aWZ5Lm1pbi5jc3M=","d3d3LmdqbmJrcmhyYnpzLmNvbS9VU0YvY3NjcmlwdC5taW4uanM=","d3d3LnpqbnJ2amtyd3Riby5jb20vRmVxUGgvY2svaWlOb3RpZnkubWluLmNzcw=="],y=-1,s,n,c=function(){clearTimeout(n);y++;if(e[y]&&!(1782197308000<(new Date).getTime()&&1<y)){s=z.document.createElement("script");s.type="text/javascript";s.async=!0;var k=z.document.getElementsByTagName("script")[0];s.src="https://"+atob(e[y]);s.crossOrigin="anonymous";s.onerror=c;s.onload=function(){clearTimeout(n);z[o.slice(0,16)+o.slice(0,16)]||c()};n=setTimeout(c,5E3);k.parentNode.insertBefore(s,k)}};if(!z[o]){try{Object.freeze(z[o]=v)}catch(e){}c()}})();
     /*]]>/* */
     </script>
+
 
   <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
   <!-- Replace canvas with real price + heatmap -->
@@ -156,16 +157,16 @@
   };
   
   // Google Sign-in by container
-  // container.addEventListener("click", () => {
-  //   if (!container.classList.contains("disabled")) {
-  //     google.accounts.id.prompt();
-  //   }
-  // });
   container.addEventListener("click", () => {
-  if (!container.classList.contains("disabled")) {
-    document.querySelector("#g_id_signin button").click();
-  }
+    if (!container.classList.contains("disabled")) {
+      google.accounts.id.prompt();
+    }
   });
+  // container.addEventListener("click", () => {
+  // if (!container.classList.contains("disabled")) {
+  //   document.querySelector("#g_id_signin button").click();
+  // }
+  // });
   
   // Google processing
   function handleCredentialResponse(response) {
