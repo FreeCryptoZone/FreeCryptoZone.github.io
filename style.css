@@ -105,9 +105,46 @@ body {
 .center-image {
   display: block;       /* 讓 img 變成區塊元素 */
   margin: 1rem auto 2rem auto;  /* 上下留白，左右自動置中 */
-  max-width: 60%;      /* 讓圖片不超過容器寬度 */
+  max-width: 50%;      /* 讓圖片不超過容器寬度 */
   height: auto;
 }
+
+
+.cta-text {
+  font-family: 'Orbitron', 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #00ffff, #0080ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 打字機效果 */
+  overflow: hidden;           /* 隱藏超出部分 */
+  white-space: nowrap;        /* 不換行 */
+  border-right: 2px solid #00ffff; /* 模擬光標 */
+  width: 0;                   /* 初始寬度 */
+  animation: typing 3s steps(25, end) forwards, blink 0.7s infinite step-end;
+  margin: 10px auto 0 auto;
+  animation: 
+    typing 2s steps(21, end) 1s forwards,  /* 2秒延遲開始 */
+    blink 0.7s infinite step-end 2s;       /* 光標同步延遲 */
+}
+
+/* 打字機文字寬度逐步增加 */
+@keyframes typing {
+  to {
+    width: 21ch; /* 根據文字長度調整 ch 單位 */
+  }
+}
+
+/* 光標閃爍效果 */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
 
 
 
@@ -289,6 +326,20 @@ h1, h2, h3 {
   margin-bottom: 10px;
   text-align: center;
 }
+
+
+.highlight-h2 {
+  font-family: 'Roboto', 'Arial', sans-serif; /* 清晰字型 */
+  font-weight: 700;                            /* 粗體更醒目 */
+  font-size: 1.8rem;                           /* 適中大小 */
+  text-align: center;
+  letter-spacing: 1px;                         /* 字距稍微拉開 */
+  color: #00bfff;                              /* 明亮藍色，提高對比度 */
+  margin: 20px 0;
+  line-height: 1.4;                            /* 提高可讀性 */
+}
+
+
 
 .cards {
   display: flex;
